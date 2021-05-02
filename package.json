@@ -1,0 +1,23 @@
+{
+  "name": "canvasboom",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build":"webpack"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "css-loader": "^2.0.1",
+    "file-loader": "^3.0.1",
+    "less": "^3.5.2",
+    "less-loader": "^4.1.0",
+    "node-sass": "^4.14.1",
+    "sass-loader": "^7.3.1",
+    "style-loader": "^0.23.1",
+    "webpack": "^3.6.0"
+  }
+}
