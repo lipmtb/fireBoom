@@ -1,2 +1,6 @@
 # fireBoom
-webpack,canvas
++ webpack
++ canvas
+
++ node-sass
++ sass

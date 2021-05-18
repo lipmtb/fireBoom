@@ -3,7 +3,7 @@ require("./scss/basestyle.scss");
 console.log("加载reset css");
 
 
-const canvasArea = document.getElementById("canvas-area");//画布
+const canvasArea = document.getElementById("canvas-area"); //画布
 //画布大小
 const sWidth = document.documentElement.clientWidth;
 const sHeight = document.documentElement.clientHeight;
@@ -17,8 +17,8 @@ canvasArea.height = sHeight;
 
 
 
-let fireArr = [];//主爆炸物（烟花弹）（垂直向上）
-let boomFireArr = [];//爆炸产生物（四散开）
+let fireArr = []; //主爆炸物（烟花弹）（垂直向上）
+let boomFireArr = []; //爆炸产生物（四散开）
 
 let timer = setInterval(function () {
     ctx.clearRect(0, 0, sWidth, sHeight);
@@ -32,7 +32,16 @@ stopBtn.onclick = function () {
     clearInterval(timer);
 }
 
+let continueBtn = document.getElementById("continue");
 
+continueBtn.onclick = function () {
+    timer = setInterval(function () {
+        ctx.clearRect(0, 0, sWidth, sHeight);
+        moveFireItem();
+
+        moveBoom();
+    }, 60);
+}
 
 //鼠标点击后添加一个烟花弹
 document.onmousedown = function (e) {
@@ -40,11 +49,11 @@ document.onmousedown = function (e) {
     let cX = e.clientX;
     let cY = e.clientY;
     let fireItem = {
-        beginX: cX,    //起始x
-        beginY: sHeight,  //起始y
+        beginX: cX, //起始x
+        beginY: sHeight, //起始y
         ySpeed: -60,
-        endY: cY,       //最高点
-        isBoom: false,  //是否爆炸
+        endY: cY, //最高点
+        isBoom: false, //是否爆炸
 
     }
 
@@ -59,7 +68,7 @@ function moveFireItem() {
         if (fi.beginY < fi.endY && !fi.isBoom) {
             fi.isBoom = true;
             //   console.log("boom:",fi.beginY,fi.endY);
-            addBoom(fi.beginX, fi.endY, 60);//添加10个爆炸物
+            addBoom(fi.beginX, fi.endY, 60); //添加10个爆炸物
             continue;
         }
 
@@ -105,11 +114,11 @@ function moveBoom() {
     for (let boom of boomFireArr) {
 
 
-      
+
         ctx.beginPath();
-        let rot=-10+Math.floor(Math.random()*10);
+        let rot = -10 + Math.floor(Math.random() * 10);
         if (boom.speedX < 0) {
-            rot=Math.floor(Math.random()*10);
+            rot = Math.floor(Math.random() * 10);
         }
         ctx.ellipse(boom.startX, boom.startY, 2, 10, rot, 0, Math.PI * 2, false);
         ctx.closePath();
